@@ -22,6 +22,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 app.use('/', routes);
 app.use('/users', users);
 
@@ -55,6 +56,17 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
+exports.send = function(){
+  var transport;
+  transport.sendMail(mailOptions, function(error, response) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Message sent: ' + response.message);
+    }
+  });
+}
 
 
 module.exports = app;
