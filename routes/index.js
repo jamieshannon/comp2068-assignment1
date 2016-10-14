@@ -8,7 +8,7 @@ router.get('/', function (req, res, next) {
 
 /* Get contact page */
 router.get('/contact', function (req, res, next) {
-    res.render('contact', {title: 'Contact'});
+    res.render('contact', {title: 'Contact', message: ''});
 });
 
 /* POST contact page */
@@ -21,13 +21,7 @@ router.post('/contact', function(req, res, next){
     var mail, transporter;
 
     //set up mail transporter
-    transporter = nodemailer.createTransport('SMTP', {
-        service: 'Gmail',
-        auth: {
-            user: "jamie.c.shannon@gmail.com",
-            pass: "testpassword"
-        }
-    });
+    transporter = nodemailer.createTransport('smtps://jamie.c.shannon@gmail.com:password');
 
     //set up the mail
     mail = {
@@ -40,11 +34,11 @@ router.post('/contact', function(req, res, next){
     transporter.sendMail(mail, function (error, response){
         //if the email doesnt send give message feedback
         if (error){
-            res.render('contact', {title: 'Porfolio Website Contact', msg: 'Error, email not sent.', err: true, page:'contact'})
+            res.render('contact', {title: 'Contact', message: error, err: true, page:'contact'})
         }
         //if the email did send, indicate that the message was sent
         else {
-            res.render('contact', {title: 'Portfolio Website Contact', mes: 'Message sent.', err: false, page: 'contact'})
+            res.render('contact', {title: 'Contact', message: 'Message sent.', err: false, page: 'contact'})
         }
     });
 });
