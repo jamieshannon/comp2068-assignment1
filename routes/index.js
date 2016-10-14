@@ -45,7 +45,7 @@ router.get('/contact', function (req, res, next) {
 
 /* POST contact page */
 router.post('/contact', function(req, res, next){
-    res.render('contact', {title: 'Contact'});
+    res.render('contact', {title: 'Contact', message: ''});
 });
 
 /* Get about page*/
