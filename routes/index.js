@@ -16,31 +16,36 @@ router.get('/contact', function (req, res, next) {
  https://www.npmjs.com/package/nodemailer
  http://blog.ragingflame.co.za/2012/6/28/simple-form-handling-with-express-and-nodemailer
  */
+// router.post('/contact', function(req, res, next){
+//     var nodemailer = require('nodemailer');
+//     var mail, transporter;
+//
+//     //set up mail transporter
+//     transporter = nodemailer.createTransport('smtps://jamie.c.shannon@gmail.com:password');
+//
+//     //set up the mail
+//     mail = {
+//         from: req.body.name + ' &lt;' + req.body.email + '&gt;', //grab information from the form
+//         to: 'jamie.c.shannon@gmail.com',
+//         subject: 'Portfolio website contact',
+//         text: req.body.message
+//     };
+//
+//     transporter.sendMail(mail, function (error, response){
+//         //if the email doesnt send give message feedback
+//         if (error){
+//             res.render('contact', {title: 'Contact', message: error, err: true, page:'contact'})
+//         }
+//         //if the email did send, indicate that the message was sent
+//         else {
+//             res.render('contact', {title: 'Contact', message: 'Message sent.', err: false, page: 'contact'})
+//         }
+//     });
+// });
+
+/* POST contact page */
 router.post('/contact', function(req, res, next){
-    var nodemailer = require('nodemailer');
-    var mail, transporter;
-
-    //set up mail transporter
-    transporter = nodemailer.createTransport('smtps://jamie.c.shannon@gmail.com:password');
-
-    //set up the mail
-    mail = {
-        from: req.body.name + ' &lt;' + req.body.email + '&gt;', //grab information from the form
-        to: 'jamie.c.shannon@gmail.com',
-        subject: 'Portfolio website contact',
-        text: req.body.message
-    };
-
-    transporter.sendMail(mail, function (error, response){
-        //if the email doesnt send give message feedback
-        if (error){
-            res.render('contact', {title: 'Contact', message: error, err: true, page:'contact'})
-        }
-        //if the email did send, indicate that the message was sent
-        else {
-            res.render('contact', {title: 'Contact', message: 'Message sent.', err: false, page: 'contact'})
-        }
-    });
+    res.render('contact', {title: 'Contact'});
 });
 
 /* Get about page*/
